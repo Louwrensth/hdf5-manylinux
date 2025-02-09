@@ -1,7 +1,7 @@
 set -euo pipefail
 
-echo "Installing zlib with yum"
-yum -y install zlib-devel
+echo "Installing zlib with apt"
+apt-get install -y zlib1g-dev
 
 pushd /tmp
 
@@ -26,4 +26,4 @@ echo "Cleaning up unnecessary files"
 rm -r hdf5-$HDF5_TAG
 rm $HDF5_TAG.tar.gz
 
-yum -y erase zlib-devel
+apt-get remove -y zlib1g-dev

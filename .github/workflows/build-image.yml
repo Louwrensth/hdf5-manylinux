@@ -43,7 +43,7 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v6
       with:
-        file: ./Dockerfile_x86_64
+        file: ./Dockerfile
         platforms: ${{ matrix.plat }}
         push: ${{ github.event_name != 'pull_request' }}
         tags: ghcr.io/${{ env.REPO_OWNER_LOWER }}/${{ matrix.base-image }}_${{ matrix.arch }}_boost_hdf5

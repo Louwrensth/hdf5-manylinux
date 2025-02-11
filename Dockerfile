@@ -1,9 +1,7 @@
 # Note, expects BASE_IMAGE manylinux_2_28 (AlmaLinux 8 based)
-ARG BASE_IMAGE
-# Note, TARGET_ARCH must be defined as a build-time arg, it is deliberately different
-# from TARGETARCH which is defined by docker. The reason is because TARGETARCH=amd64
-# but we need TARGET_ARCH=x86_64
-ARG TARGET_ARCH
+ARG BASE_IMAGE=manylinux_2_28
+# Note, TARGET_ARCH is deliberately different from TARGETARCH which is defined by docker.
+ARG TARGET_ARCH=x86_64
 FROM quay.io/pypa/${BASE_IMAGE}_${TARGET_ARCH} AS builder
 
 ARG NINJA_VERSION=1.12.1

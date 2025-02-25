@@ -110,7 +110,6 @@ ExternalProject_Add(
         -DBUILD_SHARED_LIBS:BOOL=ON
     DOWNLOAD_DIR ${DOWNLOAD_DIR}
 )
-add_dependencies(superbuild fmt)
 
 # set(HIGHFIVE_VERSION 2.10.0)
 # ExternalProject_Add(
@@ -145,5 +144,6 @@ ExternalProject_Add(
         -DENABLE_CAPNP:BOOL=ON
         -DSSLAUTHENTICATION:BOOL=ON
     DOWNLOAD_DIR ${DOWNLOAD_DIR}
+    DEPENDS fmt
 )
 add_dependencies(superbuild uda)

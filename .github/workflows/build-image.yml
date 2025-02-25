@@ -19,7 +19,7 @@ jobs:
         include:
           - arch: x86_64
             plat: linux/amd64
-            base-image: manylinux_2_28
+            base-image: manylinux_2_24
           # - arch: aarch64
           #   plat: linux/arm64
     steps:
@@ -46,7 +46,7 @@ jobs:
         file: ./Dockerfile
         platforms: ${{ matrix.plat }}
         push: ${{ github.event_name != 'pull_request' }}
-        tags: ghcr.io/${{ env.REPO_OWNER_LOWER }}/${{ matrix.base-image }}_${{ matrix.arch }}_boost_hdf5
+        tags: ghcr.io/${{ env.REPO_OWNER_LOWER }}/${{ matrix.base-image }}_${{ matrix.arch }}_boost_hdf5_uda
         build-args: |
           TARGET_ARCH=${{ matrix.arch }}
           BASE_IMAGE=${{ matrix.base-image }}

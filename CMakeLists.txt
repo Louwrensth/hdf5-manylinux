@@ -6,47 +6,47 @@ include(ExternalProject)
 
 set(DOWNLOAD_DIR "/cache")
 
-set(BOOST_VERSION 1.86.0)
-ExternalProject_Add(
-    boost
-    URL https://github.com/boostorg/boost/releases/download/boost-${BOOST_VERSION}/boost-${BOOST_VERSION}-cmake.tar.xz
-    URL_HASH SHA256=2c5ec5edcdff47ff55e27ed9560b0a0b94b07bd07ed9928b476150e16b0efc57
-    CMAKE_GENERATOR Ninja
-    CMAKE_CACHE_ARGS
-        -DCMAKE_BUILD_TYPE:STRING=Release
-        -DCMAKE_INSTALL_LIBDIR:STRING=lib
-        -DBOOST_INCLUDE_LIBRARIES:STRING=algorithm;dll;stacktrace;core;math;numeric/ublas;serialization;multi_array
-    DOWNLOAD_DIR ${DOWNLOAD_DIR}
-)
+# set(BOOST_VERSION 1.86.0)
+# ExternalProject_Add(
+#     boost
+#     URL https://github.com/boostorg/boost/releases/download/boost-${BOOST_VERSION}/boost-${BOOST_VERSION}-cmake.tar.xz
+#     URL_HASH SHA256=2c5ec5edcdff47ff55e27ed9560b0a0b94b07bd07ed9928b476150e16b0efc57
+#     CMAKE_GENERATOR Ninja
+#     CMAKE_CACHE_ARGS
+#         -DCMAKE_BUILD_TYPE:STRING=Release
+#         -DCMAKE_INSTALL_LIBDIR:STRING=lib
+#         -DBOOST_INCLUDE_LIBRARIES:STRING=algorithm;dll;stacktrace;core;math;numeric/ublas;serialization;multi_array
+#     DOWNLOAD_DIR ${DOWNLOAD_DIR}
+# )
 
-set(LIBHDF5_VERSION 1.14.5)
-set(ZLIB_VERSION 1.3)
-set(LIBAEC_VERSION 1.1.3)
-ExternalProject_Add(
-    libhdf5
-    URL https://github.com/HDFGroup/hdf5/releases/download/hdf5_${LIBHDF5_VERSION}/hdf5-${LIBHDF5_VERSION}.tar.gz
-    URL_HASH SHA256=ec2e13c52e60f9a01491bb3158cb3778c985697131fc6a342262d32a26e58e44
-    CMAKE_GENERATOR Ninja
-    CMAKE_CACHE_ARGS
-        -DCMAKE_BUILD_TYPE:STRING=Release
-        -DCMAKE_INSTALL_PREFIX:STRING=/usr/local
-        -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=ON
-        -DHDF5_ENABLE_SZIP_SUPPORT:BOOL=ON
-        -DHDF5_BUILD_EXAMPLES:BOOL=OFF
-        -DHDF5_BUILD_TOOLS:BOOL=ON
-        -DBUILD_TESTING:BOOL=OFF
-        -DHDF5_ALLOW_EXTERNAL_SUPPORT:STRING=TGZ
-        -DZLIB_PACKAGE_NAME:STRING=zlib
-        -DZLIB_TGZ_NAME:STRING=zlib-${ZLIB_VERSION}.tar.gz
-        -DZLIB_TGZ_ORIGPATH:STRING=https://github.com/madler/zlib/releases/download/v${ZLIB_VERSION}
-        -DZLIB_USE_LOCALCONTENT:BOOL=OFF
-        -DLIBAEC_PACKAGE_NAME:STRING=libaec
-        -DLIBAEC_TGZ_NAME:STRING=libaec-${LIBAEC_VERSION}.tar.gz
-        -DLIBAEC_TGZ_ORIGPATH:STRING=https://github.com/MathisRosenhauer/libaec/releases/download/v${LIBAEC_VERSION}
-        -DLIBAEC_USE_LOCALCONTENT:BOOL=OFF
-        -DHDF_PACKAGE_NAMESPACE:STRING=ct
-    DOWNLOAD_DIR ${DOWNLOAD_DIR}
-)
+# set(LIBHDF5_VERSION 1.14.5)
+# set(ZLIB_VERSION 1.3)
+# set(LIBAEC_VERSION 1.1.3)
+# ExternalProject_Add(
+#     libhdf5
+#     URL https://github.com/HDFGroup/hdf5/releases/download/hdf5_${LIBHDF5_VERSION}/hdf5-${LIBHDF5_VERSION}.tar.gz
+#     URL_HASH SHA256=ec2e13c52e60f9a01491bb3158cb3778c985697131fc6a342262d32a26e58e44
+#     CMAKE_GENERATOR Ninja
+#     CMAKE_CACHE_ARGS
+#         -DCMAKE_BUILD_TYPE:STRING=Release
+#         -DCMAKE_INSTALL_PREFIX:STRING=/usr/local
+#         -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=ON
+#         -DHDF5_ENABLE_SZIP_SUPPORT:BOOL=ON
+#         -DHDF5_BUILD_EXAMPLES:BOOL=OFF
+#         -DHDF5_BUILD_TOOLS:BOOL=ON
+#         -DBUILD_TESTING:BOOL=OFF
+#         -DHDF5_ALLOW_EXTERNAL_SUPPORT:STRING=TGZ
+#         -DZLIB_PACKAGE_NAME:STRING=zlib
+#         -DZLIB_TGZ_NAME:STRING=zlib-${ZLIB_VERSION}.tar.gz
+#         -DZLIB_TGZ_ORIGPATH:STRING=https://github.com/madler/zlib/releases/download/v${ZLIB_VERSION}
+#         -DZLIB_USE_LOCALCONTENT:BOOL=OFF
+#         -DLIBAEC_PACKAGE_NAME:STRING=libaec
+#         -DLIBAEC_TGZ_NAME:STRING=libaec-${LIBAEC_VERSION}.tar.gz
+#         -DLIBAEC_TGZ_ORIGPATH:STRING=https://github.com/MathisRosenhauer/libaec/releases/download/v${LIBAEC_VERSION}
+#         -DLIBAEC_USE_LOCALCONTENT:BOOL=OFF
+#         -DHDF_PACKAGE_NAMESPACE:STRING=ct
+#     DOWNLOAD_DIR ${DOWNLOAD_DIR}
+# )
 
 # set(EIGEN_VERSION 3.4.0)
 # ExternalProject_Add(
@@ -126,3 +126,21 @@ ExternalProject_Add(
 #     DEPENDS boost eigen libhdf5
 #     DOWNLOAD_DIR ${DOWNLOAD_DIR}
 # )
+
+set(UDA_VERSION 2.8.1)
+ExternalProject_Add(
+    uda
+    URL https://github.com/ukaea/UDA/archive/refs/tags/${UDA_VERSION}.tar.gz
+    URL_HASH SHA256=c29e8e1520e7298fabb26545f804e35bb3af257005c1c2df62e39986458d7c38
+    CMAKE_GENERATOR Ninja
+    CMAKE_CACHE_ARGS
+        -DCMAKE_BUILD_TYPE:STRING=Release
+        -Wno-deprecated
+        -DBUILD_SHARED_LIBS:BOOL=ON
+        -DBoost_NO_BOOST_CMAKE:BOOL=OFF
+        -DCLIENT_ONLY:BOOL=ON
+        -DENABLE_CAPNP:BOOL=ON
+        -DSSLAUTHENTICATION:BOOL=ON
+    DOWNLOAD_DIR ${DOWNLOAD_DIR}
+)
+

@@ -22,7 +22,5 @@ RUN --mount=type=cache,target=/cache echo "Install system dependencies" \
 
 RUN --mount=type=cache,target=/cache echo "CMake superbuild" \
     && cmake -G Ninja -S . -B build \
-    && pushd build \
-    && ninja \
-    && popd \
+    && cd build ; ninja ; cd .. \
     && rm -rf build

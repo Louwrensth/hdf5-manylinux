@@ -96,20 +96,21 @@ set(DOWNLOAD_DIR "/cache")
 #     DOWNLOAD_DIR ${DOWNLOAD_DIR}
 # )
 
-# set(FMT_VERSION 10.2.1)
-# ExternalProject_Add(
-#     fmt
-#     URL https://github.com/fmtlib/fmt/releases/download/${FMT_VERSION}/fmt-${FMT_VERSION}.zip
-#     URL_HASH SHA256=312151a2d13c8327f5c9c586ac6cf7cddc1658e8f53edae0ec56509c8fa516c9
-#     CMAKE_GENERATOR Ninja
-#     CMAKE_CACHE_ARGS
-#         -DCMAKE_BUILD_TYPE:STRING=Release
-#         -DCMAKE_INSTALL_LIBDIR:STRING=lib
-#         -DFMT_DOC:BOOL=OFF
-#         -DFMT_TEST:BOOL=OFF
-#         -DBUILD_SHARED_LIBS:BOOL=ON
-#     DOWNLOAD_DIR ${DOWNLOAD_DIR}
-# )
+set(FMT_VERSION 10.2.1)
+ExternalProject_Add(
+    fmt
+    URL https://github.com/fmtlib/fmt/releases/download/${FMT_VERSION}/fmt-${FMT_VERSION}.zip
+    URL_HASH SHA256=312151a2d13c8327f5c9c586ac6cf7cddc1658e8f53edae0ec56509c8fa516c9
+    CMAKE_GENERATOR Ninja
+    CMAKE_CACHE_ARGS
+        -DCMAKE_BUILD_TYPE:STRING=Release
+        -DCMAKE_INSTALL_LIBDIR:STRING=lib
+        -DFMT_DOC:BOOL=OFF
+        -DFMT_TEST:BOOL=OFF
+        -DBUILD_SHARED_LIBS:BOOL=ON
+    DOWNLOAD_DIR ${DOWNLOAD_DIR}
+)
+add_dependencies(superbuild fmt)
 
 # set(HIGHFIVE_VERSION 2.10.0)
 # ExternalProject_Add(

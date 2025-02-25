@@ -18,9 +18,7 @@ RUN --mount=type=cache,target=/cache echo "Install system dependencies" \
     && apt-get install -y libboost-dev libboost-system-dev libboost-filesystem-dev libboost-program-options-dev libboost-test-dev libboost-iostreams-dev \
     && apt-get install -y libhdf5-serial-dev \
     && apt-get install -y capnproto libcapnp-dev \
-    && apt-get install -y libspdlog-dev libxml2-dev libtirpc-dev xsltproc \
-    && apt-get install -y libfmt3-dev
-
+    && apt-get install -y libspdlog-dev libxml2-dev libtirpc-dev xsltproc
 RUN --mount=type=cache,target=/cache echo "CMake superbuild" \
     && cmake -G Ninja -S . -B build \
     && cd build \

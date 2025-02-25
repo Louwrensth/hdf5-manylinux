@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.24.0)
 
-project(imas-dependency-superbuild)
+project(imas-deps-image-superbuild)
 
 include(ExternalProject)
 
@@ -131,7 +131,7 @@ set(UDA_VERSION 2.8.1)
 ExternalProject_Add(
     uda
     URL https://github.com/ukaea/UDA/archive/refs/tags/${UDA_VERSION}.tar.gz
-    URL_HASH SHA256=c29e8e1520e7298fabb26545f804e35bb3af257005c1c2df62e39986458d7c38
+    URL_HASH SHA256=58ad0b9adcf5e9ac4b31e38df38a47d3d6e8501beed5958cf7237a60177c1c0e
     CMAKE_GENERATOR Ninja
     CMAKE_CACHE_ARGS
         -DCMAKE_BUILD_TYPE:STRING=Release
@@ -143,4 +143,4 @@ ExternalProject_Add(
         -DSSLAUTHENTICATION:BOOL=ON
     DOWNLOAD_DIR ${DOWNLOAD_DIR}
 )
-
+add_dependencies(imas-deps-image-superbuild uda)

@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.24.0)
 
 project(imas-deps-image-superbuild)
 
+add_custom_target(superbuild ALL)
+
 include(ExternalProject)
 
 set(DOWNLOAD_DIR "/cache")
@@ -143,4 +145,4 @@ ExternalProject_Add(
         -DSSLAUTHENTICATION:BOOL=ON
     DOWNLOAD_DIR ${DOWNLOAD_DIR}
 )
-add_dependencies(imas-deps-image-superbuild uda)
+add_dependencies(superbuild uda)

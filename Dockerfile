@@ -20,7 +20,7 @@ RUN --mount=type=cache,target=/cache echo "Install system dependencies" \
     && apt-get install -y capnproto libcapnp-dev \
     && apt-get install -y libspdlog-dev libxml2-dev libtirpc-dev xsltproc
 RUN --mount=type=cache,target=/cache echo "CMake superbuild" \
-    && cmake -G Ninja -S . -B build \
+    && cmake -G Ninja -S . -B build --debug-find --trace \
     && cd build \
     && ninja \
     && cd .. \

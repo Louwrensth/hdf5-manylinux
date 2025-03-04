@@ -131,6 +131,7 @@ ExternalProject_Add(
 # )
 
 set(UDA_VERSION 2.8.1)
+find_package( CapnProto REQUIRED )  # why didn't UDA do find_package()?
 ExternalProject_Add(
     uda
     URL https://github.com/ukaea/UDA/archive/refs/tags/${UDA_VERSION}.tar.gz
@@ -145,7 +146,8 @@ ExternalProject_Add(
         -DENABLE_CAPNP:BOOL=ON
         -DSSLAUTHENTICATION:BOOL=ON
         -DNO_IDL_WRAPPER:BOOL=ON
+        -DNO_JAVA_WRAPPER:BOOL=ON
     DOWNLOAD_DIR ${DOWNLOAD_DIR}
-    DEPENDS fmt
+    DEPENDS fmt CapnProto
 )
 add_dependencies(superbuild uda)

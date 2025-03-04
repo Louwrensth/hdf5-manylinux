@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.24.0)
+cmake_policy(SET CMP0074 NEW)
 
 project(imas-deps-image-superbuild)
 
@@ -143,6 +144,7 @@ ExternalProject_Add(
         -DCLIENT_ONLY:BOOL=ON
         -DENABLE_CAPNP:BOOL=ON
         -DSSLAUTHENTICATION:BOOL=ON
+        -DNO_IDL_WRAPPER:BOOL=ON
     DOWNLOAD_DIR ${DOWNLOAD_DIR}
     DEPENDS fmt
 )

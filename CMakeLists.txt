@@ -148,6 +148,6 @@ ExternalProject_Add(
         -DNO_IDL_WRAPPER:BOOL=ON
         -DNO_JAVA_WRAPPER:BOOL=ON
     DOWNLOAD_DIR ${DOWNLOAD_DIR}
-    DEPENDS fmt CapnProto
+    DEPENDS fmt
 )
 add_dependencies(superbuild uda)

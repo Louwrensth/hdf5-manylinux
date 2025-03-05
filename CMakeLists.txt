@@ -136,6 +136,9 @@ ExternalProject_Add(
     URL https://github.com/ukaea/UDA/archive/refs/tags/${UDA_VERSION}.tar.gz
     URL_HASH SHA256=58ad0b9adcf5e9ac4b31e38df38a47d3d6e8501beed5958cf7237a60177c1c0e
     CMAKE_GENERATOR Ninja
+    CMAKE_ARGS
+        --debug-find
+        --trace
     CMAKE_CACHE_ARGS
         -DCMAKE_BUILD_TYPE:STRING=Release
         -Wno-deprecated
@@ -146,7 +149,6 @@ ExternalProject_Add(
         -DSSLAUTHENTICATION:BOOL=ON
         -DNO_IDL_WRAPPER:BOOL=ON
         -DNO_JAVA_WRAPPER:BOOL=ON
-        -DCMAKE_FIND_DEBUG_MODE:BOOL=ON
     DOWNLOAD_DIR ${DOWNLOAD_DIR}
     DEPENDS fmt
 )

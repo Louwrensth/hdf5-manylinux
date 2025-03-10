@@ -14,7 +14,6 @@ ARG UDA_VERSION=2.8.1
 WORKDIR /build/
 
 RUN --mount=type=cache,target=/cache echo "Install system dependencies" \
-    && dnf update \
     && dnf list available \
     && dnf -y install libssl-devel \
     && dnf -y install pkg-config ninja-build \

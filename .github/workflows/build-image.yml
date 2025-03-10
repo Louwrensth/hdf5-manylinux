@@ -12,14 +12,14 @@ concurrency:
 
 jobs:
   build:
-    name: Build image for ${{ matrix.arch }}
+    name: Build image ${{ matrix.base-image }} ${{ matrix.arch }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
         include:
           - arch: x86_64
             plat: linux/amd64
-            base-image: manylinux_2_24
+            base-image: manylinux_2_28
           # - arch: aarch64
           #   plat: linux/arm64
     steps:

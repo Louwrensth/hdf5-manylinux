@@ -23,7 +23,7 @@ RUN --mount=type=cache,target=/cache echo "Install system dependencies" \
     dnf -y install capnproto && \
     dnf -y install fmt fmt-devel && \
     dnf -y install spdlog spdlog-devel libxml2-devel libtirpc-devel && \
-    dnf -y install xsltproc
+    dnf -y install libxslt
 
     # RUN --mount=type=cache,target=/cache echo "CMake superbuild" \
 #     && cmake -G Ninja -S . -B build \

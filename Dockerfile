@@ -20,7 +20,7 @@ RUN --mount=type=cache,target=/cache echo "Install system dependencies" \
     dnf -y install openssl-devel && \
     dnf -y install ninja-build && \
     dnf -y install boost1.78-devel && \
-    dnf -y install hdf5-serial-devel && \
+    dnf -y install libhdf5-devel libhdf5-helpers && \
     dnf -y install capnproto capnp-devel && \
     dnf -y install fmt fmt-devel && \
     dnf -y install spdlog spdlog-devel libxml2-devel libtirpc-devel && \
